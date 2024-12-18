@@ -39,13 +39,25 @@ public class Main {
 
             }while(!header.isEmpty());
 
+            if(resource.endsWith("/") || resource.isEmpty())
+            {
+                resource += "index.html";
+            }
+
             File file = new File ("htdocs/" + resource);
 
-            if(file.exists())
+            if(file.isDirectory() && !resource.endsWith("/"))
+            {
+                out.writeBytes("HTTP/1.1 301 Moved Permanentley\n");
+                out.writeBytes("Location: " + resource + "/\n");
+                out.writeBytes("Content-Length: 0\n");
+
+                out.writeBytes("\n");
+            }
+            else if(file.exists() && file.isFile())
             {
                 //String msg = "benvenuto nella <b>home</b>";
                 
-
                 out.writeBytes("HTTP/1.1 200 OK\n");
                 out.writeBytes("Content-Length: " + file.length() + "\n");
                 out.writeBytes("Content-Type: " + getContentType(file) + "\n");

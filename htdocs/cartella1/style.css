@@ -1,0 +1,20 @@
+body
+{
+    background: rgba(173,29,21,255);
+    text-align: center;
+}
+h1
+{
+    font-size: 100px;
+}
+h3
+{
+    color: rgba(158,188,59,255);
+    background-color: rgba(122,98,51,255);    
+}
+h4
+{  
+    color: white;
+    background-color: rgb(78,95,121);
+
+}
